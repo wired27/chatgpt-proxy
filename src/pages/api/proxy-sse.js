@@ -25,11 +25,21 @@ export default async function handler(req) {
     });
   }
 
-  let path = pathname.split("/proxy-sse");
-  path.shift();
-  path = path.join("");
+  // Improved path extraction
+  const pathSegments = pathname.split("/proxy-sse");
+  let path = "";
+
+  // If there's something after /proxy-sse
+  if (pathSegments.length > 1) {
+    path = pathSegments[1] || "";
+  }
+
+  console.log("Original pathname:", pathname);
+  console.log("Extracted path:", path);
 
   const url = `https://api.openai.com${path}`;
+  console.log("Forwarding to:", url);
+
   const options = {
     headers: headers,
     method: method,
