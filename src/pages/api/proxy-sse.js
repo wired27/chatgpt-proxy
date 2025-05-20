@@ -37,7 +37,7 @@ export default async function handler(req) {
   console.log("Original pathname:", pathname);
   console.log("Extracted path:", path);
 
-  const url = `https://api.openai.com${path}`;
+  const url = `https://api.openai.com/v1/${path}`;
   console.log("Forwarding to:", url);
 
   const options = {
